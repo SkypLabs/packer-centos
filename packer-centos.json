@@ -10,7 +10,7 @@
     "password": "password",
     "disk_size": "10000",
     "timeout": "30m",
-    "headless": "false"
+    "headless": "true"
   },
   "builders": [
     {
