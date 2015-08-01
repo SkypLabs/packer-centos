@@ -66,6 +66,7 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/vmtools.sh",
         "scripts/cleanup.sh"
       ]
     }
