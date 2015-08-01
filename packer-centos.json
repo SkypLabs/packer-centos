@@ -1,0 +1,72 @@
+{
+  "variables": {
+    "build_number": "{{timestamp}}",
+    "centos_version": "6.6",
+    "centos_arch": "x86_64",
+    "iso_base_url": "http://centos.mirrors.ovh.net/ftp.centos.org",
+    "iso_checksum": "ad8f6de098503174c7609d172679fa0dd276f4b669708933d9c4927bd3fe1017",
+    "iso_checksum_type": "sha256",
+    "username": "root",
+    "password": "password",
+    "disk_size": "10000",
+    "timeout": "30m",
+    "headless": "false"
+  },
+  "builders": [
+    {
+      "name": "vbox",
+      "type": "virtualbox-iso",
+      "iso_url": "{{user `iso_base_url`}}/{{user `centos_version`}}/isos/{{user `centos_arch`}}/CentOS-{{user `centos_version`}}-{{user `centos_arch`}}-netinstall.iso",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "ssh_username": "{{user `username`}}",
+      "ssh_password": "{{user `password`}}",
+      "ssh_wait_timeout": "{{user `timeout`}}",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+      ],
+      "disk_size": "{{user `disk_size`}}",
+      "hard_drive_interface": "sata",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "guest_additions_sha256": "432c2da1d9a939de7ba1d2cfb10595031374af9ce66417a43979d1794beedbb1",
+      "guest_os_type": "RedHat_64",
+      "headless": "{{user `headless`}}",
+      "http_directory": "http",
+      "shutdown_command": "shutdown -P now",
+      "vboxmanage": [
+        [ "modifyvm", "{{.Name}}", "--memory", "512" ],
+        [ "modifyvm", "{{.Name}}", "--cpus", "1" ]
+      ]
+    },
+    {
+      "name": "vmware",
+      "type": "vmware-iso",
+      "iso_url": "{{user `iso_base_url`}}/{{user `centos_version`}}/isos/{{user `centos_arch`}}/CentOS-{{user `centos_version`}}-{{user `centos_arch`}}-netinstall.iso",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "ssh_username": "{{user `username`}}",
+      "ssh_password": "{{user `password`}}",
+      "ssh_wait_timeout": "{{user `timeout`}}",
+      "disk_size": "{{user `disk_size`}}",
+      "tools_upload_flavor": "linux",
+      "guest_os_type": "centos-64",
+      "headless": "{{user `headless`}}",
+      "shutdown_command": "shutdown -P now",
+      "http_directory": "http",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+      ],
+      "vmx_data": {
+        "memsize": "512",
+        "numvcpus": "1",
+        "vhv.enable": "TRUE"
+      }
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "output": "CentOS-{{user `centos_version`}}-{{user `centos_arch`}}-{{user `build_number`}}-{{.Provider}}.box"
+    }
+  ]
+}
