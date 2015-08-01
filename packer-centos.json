@@ -4,6 +4,7 @@
     "centos_version": "6.6",
     "centos_arch": "x86_64",
     "iso_base_url": "http://centos.mirrors.ovh.net/ftp.centos.org",
+    "iso_filename": "netinstall",
     "iso_checksum": "ad8f6de098503174c7609d172679fa0dd276f4b669708933d9c4927bd3fe1017",
     "iso_checksum_type": "sha256",
     "username": "root",
@@ -16,7 +17,7 @@
     {
       "name": "vbox",
       "type": "virtualbox-iso",
-      "iso_url": "{{user `iso_base_url`}}/{{user `centos_version`}}/isos/{{user `centos_arch`}}/CentOS-{{user `centos_version`}}-{{user `centos_arch`}}-netinstall.iso",
+      "iso_url": "{{user `iso_base_url`}}/{{user `centos_version`}}/isos/{{user `centos_arch`}}/CentOS-{{user `centos_version`}}-{{user `centos_arch`}}-{{user `iso_filename`}}.iso",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "ssh_username": "{{user `username`}}",
@@ -41,7 +42,7 @@
     {
       "name": "vmware",
       "type": "vmware-iso",
-      "iso_url": "{{user `iso_base_url`}}/{{user `centos_version`}}/isos/{{user `centos_arch`}}/CentOS-{{user `centos_version`}}-{{user `centos_arch`}}-netinstall.iso",
+      "iso_url": "{{user `iso_base_url`}}/{{user `centos_version`}}/isos/{{user `centos_arch`}}/CentOS-{{user `centos_version`}}-{{user `centos_arch`}}-{{user `iso_filename`}}.iso",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "ssh_username": "{{user `username`}}",
