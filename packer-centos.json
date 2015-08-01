@@ -60,6 +60,26 @@
         "numvcpus": "1",
         "vhv.enable": "TRUE"
       }
+    },
+    {
+      "name": "kvm",
+      "type": "qemu",
+      "iso_url": "{{user `iso_base_url`}}/{{user `centos_version`}}/isos/{{user `centos_arch`}}/CentOS-{{user `centos_version`}}-{{user `centos_arch`}}-{{user `iso_filename`}}.iso",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "ssh_username": "{{user `username`}}",
+      "ssh_password": "{{user `password`}}",
+      "ssh_wait_timeout": "{{user `timeout`}}",
+      "disk_size": "{{user `disk_size`}}",
+      "headless": "{{user `headless`}}",
+      "shutdown_command": "shutdown -P now",
+      "http_directory": "http",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+      ],
+      "qemuargs": [
+        [ "-m", "512M"]
+      ]
     }
   ],
   "provisioners": [
