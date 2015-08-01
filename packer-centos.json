@@ -85,8 +85,12 @@
   "provisioners": [
     {
       "type": "shell",
+      "scripts": "scripts/vbox-tools.sh",
+      "only": ["vbox"]
+    },
+    {
+      "type": "shell",
       "scripts": [
-        "scripts/vbox-tools.sh",
         "scripts/cleanup.sh"
       ]
     }
