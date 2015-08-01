@@ -64,6 +64,14 @@
       }
     }
   ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/cleanup.sh"
+      ]
+    }
+  ],
   "post-processors": [
     {
       "type": "vagrant",
