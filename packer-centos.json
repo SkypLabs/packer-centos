@@ -11,7 +11,8 @@
     "password": "password",
     "disk_size": "10000",
     "timeout": "30m",
-    "headless": "true"
+    "headless": "true",
+    "vagrant": "false"
   },
   "builders": [
     {
@@ -87,6 +88,11 @@
       "type": "shell",
       "scripts": "scripts/vbox-tools.sh",
       "only": ["vbox"]
+    },
+    {
+      "type": "shell",
+      "scripts": "scripts/vagrant.sh",
+      "environment_vars": ["VAGRANT={{user `vagrant`}}"]
     },
     {
       "type": "shell",
