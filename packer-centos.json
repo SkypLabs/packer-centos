@@ -11,12 +11,34 @@
     "password": "password",
     "disk_size": "10000",
     "timeout": "30m",
-    "headless": "true",
-    "vagrant": "false"
+    "headless": "true"
   },
   "builders": [
     {
       "name": "vbox",
+      "type": "virtualbox-iso",
+      "iso_url": "{{user `iso_base_url`}}/{{user `centos_version`}}/isos/{{user `centos_arch`}}/CentOS-{{user `centos_version`}}-{{user `centos_arch`}}-{{user `iso_filename`}}.iso",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "ssh_username": "{{user `username`}}",
+      "ssh_password": "{{user `password`}}",
+      "ssh_wait_timeout": "{{user `timeout`}}",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+      ],
+      "disk_size": "{{user `disk_size`}}",
+      "hard_drive_interface": "sata",
+      "guest_os_type": "RedHat_64",
+      "headless": "{{user `headless`}}",
+      "http_directory": "http",
+      "shutdown_command": "shutdown -P now",
+      "vboxmanage": [
+        [ "modifyvm", "{{.Name}}", "--memory", "512" ],
+        [ "modifyvm", "{{.Name}}", "--cpus", "1" ]
+      ]
+    },
+    {
+      "name": "vbox4vagrant",
       "type": "virtualbox-iso",
       "iso_url": "{{user `iso_base_url`}}/{{user `centos_version`}}/isos/{{user `centos_arch`}}/CentOS-{{user `centos_version`}}-{{user `centos_arch`}}-{{user `iso_filename`}}.iso",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -63,7 +85,51 @@
       }
     },
     {
+      "name": "vmware4vagrant",
+      "type": "vmware-iso",
+      "iso_url": "{{user `iso_base_url`}}/{{user `centos_version`}}/isos/{{user `centos_arch`}}/CentOS-{{user `centos_version`}}-{{user `centos_arch`}}-{{user `iso_filename`}}.iso",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "ssh_username": "{{user `username`}}",
+      "ssh_password": "{{user `password`}}",
+      "ssh_wait_timeout": "{{user `timeout`}}",
+      "disk_size": "{{user `disk_size`}}",
+      "tools_upload_flavor": "linux",
+      "guest_os_type": "centos-64",
+      "headless": "{{user `headless`}}",
+      "shutdown_command": "shutdown -P now",
+      "http_directory": "http",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+      ],
+      "vmx_data": {
+        "memsize": "512",
+        "numvcpus": "1",
+        "vhv.enable": "TRUE"
+      }
+    },
+    {
       "name": "kvm",
+      "type": "qemu",
+      "iso_url": "{{user `iso_base_url`}}/{{user `centos_version`}}/isos/{{user `centos_arch`}}/CentOS-{{user `centos_version`}}-{{user `centos_arch`}}-{{user `iso_filename`}}.iso",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "ssh_username": "{{user `username`}}",
+      "ssh_password": "{{user `password`}}",
+      "ssh_wait_timeout": "{{user `timeout`}}",
+      "disk_size": "{{user `disk_size`}}",
+      "headless": "{{user `headless`}}",
+      "shutdown_command": "shutdown -P now",
+      "http_directory": "http",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+      ],
+      "qemuargs": [
+        [ "-m", "512M"]
+      ]
+    },
+    {
+      "name": "kvm4vagrant",
       "type": "qemu",
       "iso_url": "{{user `iso_base_url`}}/{{user `centos_version`}}/isos/{{user `centos_arch`}}/CentOS-{{user `centos_version`}}-{{user `centos_arch`}}-{{user `iso_filename`}}.iso",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -87,12 +153,12 @@
     {
       "type": "shell",
       "scripts": "scripts/vbox-tools.sh",
-      "only": ["vbox"]
+      "only": ["vbox", "vbox4vagrant"]
     },
     {
       "type": "shell",
       "scripts": "scripts/vagrant.sh",
-      "environment_vars": ["VAGRANT={{user `vagrant`}}"]
+      "only": ["vbox4vagrant", "vmware4vagrant", "kvm4vagrant"]
     },
     {
       "type": "shell",
@@ -104,7 +170,8 @@
   "post-processors": [
     {
       "type": "vagrant",
-      "output": "CentOS-{{user `centos_version`}}-{{user `centos_arch`}}-{{user `build_number`}}-{{.Provider}}.box"
+      "output": "CentOS-{{user `centos_version`}}-{{user `centos_arch`}}-{{user `build_number`}}-{{.Provider}}.box",
+      "only": ["vbox4vagrant", "vmware4vagrant", "kvm4vagrant"]
     }
   ]
 }
