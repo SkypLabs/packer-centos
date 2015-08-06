@@ -1,11 +1,8 @@
 {
   "variables": {
     "build_number": "{{timestamp}}",
-    "centos_version": "6.6",
     "centos_arch": "x86_64",
     "iso_base_url": "http://centos.mirrors.ovh.net/ftp.centos.org",
-    "iso_filename": "netinstall",
-    "iso_checksum": "ad8f6de098503174c7609d172679fa0dd276f4b669708933d9c4927bd3fe1017",
     "iso_checksum_type": "sha256",
     "username": "root",
     "password": "password",
@@ -24,7 +21,7 @@
       "ssh_password": "{{user `password`}}",
       "ssh_wait_timeout": "{{user `timeout`}}",
       "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_file`}}<enter><wait>"
       ],
       "disk_size": "{{user `disk_size`}}",
       "hard_drive_interface": "sata",
@@ -47,7 +44,7 @@
       "ssh_password": "{{user `password`}}",
       "ssh_wait_timeout": "{{user `timeout`}}",
       "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_file`}}<enter><wait>"
       ],
       "disk_size": "{{user `disk_size`}}",
       "hard_drive_interface": "sata",
@@ -76,7 +73,7 @@
       "shutdown_command": "shutdown -P now",
       "http_directory": "http",
       "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_file`}}<enter><wait>"
       ],
       "vmx_data": {
         "memsize": "512",
@@ -100,7 +97,7 @@
       "shutdown_command": "shutdown -P now",
       "http_directory": "http",
       "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_file`}}<enter><wait>"
       ],
       "vmx_data": {
         "memsize": "512",
@@ -122,7 +119,7 @@
       "shutdown_command": "shutdown -P now",
       "http_directory": "http",
       "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_file`}}<enter><wait>"
       ],
       "qemuargs": [
         [ "-m", "512M"]
@@ -142,7 +139,7 @@
       "shutdown_command": "shutdown -P now",
       "http_directory": "http",
       "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_file`}}<enter><wait>"
       ],
       "qemuargs": [
         [ "-m", "512M"]
