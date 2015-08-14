@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ## See http://lonesysadmin.net/2013/03/26/preparing-linux-template-vms/
 ## for more informations
 

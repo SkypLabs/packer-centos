@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Add vagrant user
 useradd vagrant
 

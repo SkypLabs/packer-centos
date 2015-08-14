@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Install dependencies
 yum install -y gcc make perl kernel-devel-$(uname -r)
 
