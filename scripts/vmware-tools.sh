@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Install dependencies
-yum install -y perl
+yum install -y perl net-tools
 
 # Mount VMware Tools ISO file
 mount -t iso9660 -o loop /root/linux.iso /mnt
