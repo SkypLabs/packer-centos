@@ -154,6 +154,11 @@
     },
     {
       "type": "shell",
+      "scripts": "scripts/vmware-tools.sh",
+      "only": ["vmware", "vmware4vagrant"]
+    },
+    {
+      "type": "shell",
       "scripts": "scripts/vagrant.sh",
       "only": ["vbox4vagrant", "vmware4vagrant", "kvm4vagrant"]
     },
