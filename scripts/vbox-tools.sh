@@ -11,7 +11,8 @@ mount -t iso9660 -o loop /root/VBoxGuestAdditions.iso /mnt
 
 # Display installation logs before deleting them
 cat /var/log/vboxadd-install.log
-rm -f /var/log/vboxadd-install.log
+rm -f /var/log/vboxadd-install*.log
+rm -f /var/log/VBoxGuestAdditions.log
 
 # Unmount ISO file
 umount /mnt
