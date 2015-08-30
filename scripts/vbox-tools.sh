@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Install dependencies
-yum install -y gcc make perl kernel-devel-$(uname -r)
+yum install -y gcc make perl bzip2 kernel-devel-$(uname -r)
 
 # Mount Guest Additions ISO file
 mount -t iso9660 -o loop /root/VBoxGuestAdditions.iso /mnt
