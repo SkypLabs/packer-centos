@@ -29,7 +29,7 @@ cat /dev/null > /var/log/grubby
 rm -f /etc/udev/rules.d/70*
 
 # Remove the traces of the template MAC address and UUIDs
-sed -Ei '/^(HWADDR|UUID)=/d' /etc/sysconfig/network-scripts/ifcfg-eth0
+sed -Ei '/^(HWADDR|UUID)=/d' /etc/sysconfig/network-scripts/ifcfg-$(ip route | grep default | awk '{print $5}')
 
 # Clean /tmp out
 rm -rf /tmp/*
