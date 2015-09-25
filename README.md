@@ -40,16 +40,14 @@ In order to use this template behind an *explicit proxy*, you have to add this l
 
 		url --url="http://centos.mirrors.ovh.net/ftp.centos.org/7/os/x86_64/" --proxy=<explicit proxy>
 
-* In the \*-tools.sh scripts, before the yum command :
+* In the \*-tools.sh scripts, you have to add an option to the yum command :
 
 		# Install dependencies
-		grep '^proxy=' /etc/yum.conf || echo "proxy=<explicit proxy>" >> /etc/yum.conf
-		yum install -y gcc make perl bzip2 kernel-devel-$(uname -r)
+		yum --setopt=proxy=<explicit proxy> install -y ...
 
 * In the vagrant.sh script, before the curl command :
 
 		# Download the insecure public key from GitHub official repository
-		export http_proxy=<explicit proxy>
 		export https_proxy=<explicit proxy>
 		curl \
 			--location \
