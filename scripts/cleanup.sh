@@ -26,7 +26,7 @@ cat /dev/null > /var/log/lastlog
 cat /dev/null > /var/log/grubby
 
 # Remove the udev persistent device rules
-rm -f /etc/udev/rules.d/70*
+rm -f /etc/udev/rules.d/70-persistent-*.rules
 
 # Remove the traces of the template MAC address and UUIDs
 sed -Ei '/^(HWADDR|UUID)=/d' /etc/sysconfig/network-scripts/ifcfg-$(ip route | grep default | awk '{print $5}')
