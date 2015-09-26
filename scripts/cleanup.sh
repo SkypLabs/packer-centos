@@ -36,6 +36,8 @@ rm -rf /tmp/*
 rm -rf /var/tmp/*
 
 # Remove the SSH host keys
+# They will be regenerated for each instance
+# at startup by the sshd-keygen.service
 rm -f /etc/ssh/*key*
 
 # Remove root user's SSH files
