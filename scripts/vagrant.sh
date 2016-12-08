@@ -19,9 +19,9 @@ install -d -o vagrant -g vagrant -m 0700 /home/vagrant/.ssh
 
 # Download the insecure public key from GitHub official repository
 curl \
-	--location \
-	--output /home/vagrant/.ssh/authorized_keys \
-	https://github.com/mitchellh/vagrant/raw/master/keys/vagrant.pub
+    --location \
+    --output /home/vagrant/.ssh/authorized_keys \
+    https://github.com/mitchellh/vagrant/raw/master/keys/vagrant.pub
 
 # Change owner and group on SSH authorized keys file for vagrant user
 chown vagrant:vagrant /home/vagrant/.ssh/authorized_keys
