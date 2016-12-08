@@ -1,6 +1,6 @@
 # Packer CentOS
 
-This repository contains files used by [Packer][1] to create CentOS images for different hypervisors.
+This repository contains files used by [Packer][packer] to create CentOS images for different hypervisors.
 
 ## Hypervisors supported
 
@@ -10,7 +10,7 @@ This repository contains files used by [Packer][1] to create CentOS images for d
 
 ## Vagrant support
 
-In order to create an image to be used by [Vagrant][2], you have to use one of these builders :
+In order to create an image to be used by [Vagrant][vagrant], you have to use one of these builders :
 
 * vbox4vagrant
 * vmware4vagrant
@@ -70,8 +70,8 @@ To create an CentOS 7 image only for VirtualBox with Vagrant support and some de
 
 ## License
 
-[MIT][3]
+[MIT][license]
 
- [1]: https://packer.io/
- [2]: https://www.vagrantup.com/
- [3]: http://opensource.org/licenses/MIT
+ [packer]: https://packer.io/
+ [vagrant]: https://www.vagrantup.com/
+ [license]: http://opensource.org/licenses/MIT
