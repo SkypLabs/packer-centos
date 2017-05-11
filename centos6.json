@@ -1,6 +1,6 @@
 {
-  "centos_version": "6.9",
+  "centos_version": "6.10",
   "ks_file": "centos6.cfg",
   "iso_filename": "netinstall",
-  "iso_checksum": "6b2cbec908708476389b143841a8e73462506de0744bda8b4192d3655d5bb8d2"
+  "iso_checksum": "56f7b078a3b443095ba006cdc85319c691251cda98c5d73d12ef6db7aff6b4c1"
 }
