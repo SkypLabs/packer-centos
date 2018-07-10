@@ -2,7 +2,7 @@
   "variables": {
     "build_number": "{{timestamp}}",
     "centos_arch": "x86_64",
-    "iso_base_url": "http://ftp.heanet.ie/pub/centos/",
+    "iso_base_url": "http://ftp.heanet.ie/pub/centos",
     "iso_checksum_type": "sha256",
     "username": "root",
     "password": "password",
