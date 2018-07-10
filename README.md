@@ -4,17 +4,17 @@ This repository contains files used by [Packer][packer] to create CentOS images 
 
 ## Hypervisors supported
 
-* VirtualBox (vbox)
-* VMware (vmware)
-* KVM (kvm)
+* VirtualBox (`vbox`)
+* VMware (`vmware`)
+* KVM (`kvm`)
 
 ## Vagrant support
 
-In order to create an image to be used by [Vagrant][vagrant], you have to use one of these builders :
+In order to create an image to be used with [Vagrant][vagrant], you need to use one of these builders:
 
-* vbox4vagrant
-* vmware4vagrant
-* kvm4vagrant
+* `vbox4vagrant`
+* `vmware4vagrant`
+* `kvm4vagrant`
 
 ## Variables available
 
@@ -24,28 +24,28 @@ In order to create an image to be used by [Vagrant][vagrant], you have to use on
       centos_arch       = x86_64
       disk_size         = 10000
       headless          = true
-      iso_base_url      = http://centos.mirrors.ovh.net/ftp.centos.org
+      iso_base_url      = http://ftp.heanet.ie/pub/centos
       iso_checksum_type = sha256
       password          = password
       timeout           = 30m
       username          = root
 
-In addition, several variables files are available in order to precise which version of CentOS you want to use. The Packer *-var-file* option has to be used with one of these files.
+In addition, several variable files are available in order to precise which version of CentOS you want to use. The Packer `-var-file` option has to be used with one of these files.
 
 ## Use this template behind a proxy
 
-In order to use this template behind an *explicit proxy*, you have to add this last in some files :
+In order to use this template behind an *explicit proxy*, you need to add this last one in some files:
 
-* In the kickstart file :
+* In the kickstart file:
 
-        url --url="http://centos.mirrors.ovh.net/ftp.centos.org/7/os/x86_64/" --proxy=<explicit proxy>
+        url --mirrorlist="http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os" --proxy=<explicit proxy>
 
-* In the \*-tools.sh scripts, you have to add an option to the yum command :
+* In the `*-tools.sh` scripts, you need to add an option to the `yum` command:
 
         # Install dependencies
         yum --setopt=proxy=<explicit proxy> install -y ...
 
-* In the vagrant.sh script, before the curl command :
+* In the `vagrant.sh` script, before the `curl` command:
 
         # Download the insecure public key from GitHub official repository
         export https_proxy=<explicit proxy>
@@ -56,15 +56,15 @@ In order to use this template behind an *explicit proxy*, you have to add this l
 
 ## Examples
 
-To create an image of CentOS 7 for all the hypervisors, including images with Vagrant support :
+To create an image of CentOS 7 with all the hypervisors, including Vagrant images:
 
     packer build -var-file centos7.json packer-centos.json
 
-To create an image of CentOS 6 for all the hypervisors, including images with Vagrant support :
+To create an image of CentOS 6 with all the hypervisors, including Vagrant images:
 
     packer build -var-file centos6.json packer-centos.json
 
-To create an CentOS 7 image only for VirtualBox with Vagrant support and some default variable values overwritten, for example, *headless* and *timeout* :
+To create a Vagrant CentOS 7 image only with VirtualBox and overwrite some default variable's values (here, `headless` and `timeout`):
 
     packer build -only vbox4vagrant -var 'headless=false' -var 'timeout=1h' -var-file centos7.json packer-centos.json
 
