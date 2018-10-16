@@ -30,7 +30,7 @@ In order to create an image to be used with [Vagrant][vagrant], you need to use 
       timeout           = 30m
       username          = root
 
-In addition, several variable files are available in order to precise which version of CentOS you want to use. The Packer `-var-file` option has to be used with one of these files.
+In addition, several variable files are available to precise which version of CentOS should be used via the Packer `-var-file` option.
 
 ## Use this template behind a proxy
 
@@ -64,7 +64,7 @@ To create an image of CentOS 6 with all the hypervisors, including Vagrant image
 
     packer build -var-file centos6.json packer-centos.json
 
-To create a Vagrant CentOS 7 image only with VirtualBox and overwrite some default variable's values (here, `headless` and `timeout`):
+To create a Vagrant CentOS 7 image only with VirtualBox and overwrite some default variables' value (here, `headless` and `timeout`):
 
     packer build -only vbox4vagrant -var 'headless=false' -var 'timeout=1h' -var-file centos7.json packer-centos.json
 
