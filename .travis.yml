@@ -1,0 +1,10 @@
+language: minimum
+
+addons:
+  apt:
+    update: true
+
+before_install:
+  - sudo apt-get install packer
+
+script: packer validate -var-file=centos7.json packer-centos.json
