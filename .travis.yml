@@ -2,7 +2,7 @@ language: minimum
 
 install:
   - wget -O ${HOME}/packer.zip https://releases.hashicorp.com/packer/1.3.3/packer_1.3.3_linux_amd64.zip
-  - unzip -od /usr/local/bin ${HOME}/packer.zip
+  - sudo unzip -od /usr/local/bin ${HOME}/packer.zip
   - rm ${HOME}/packer.zip
 
 script: packer validate -var-file=centos7.json packer-centos.json
