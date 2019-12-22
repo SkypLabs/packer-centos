@@ -30,7 +30,7 @@
       "http_directory": "http",
       "shutdown_command": "shutdown -P now",
       "vboxmanage": [
-        [ "modifyvm", "{{.Name}}", "--memory", "512" ],
+        [ "modifyvm", "{{.Name}}", "--memory", "1024" ],
         [ "modifyvm", "{{.Name}}", "--cpus", "1" ]
       ]
     },
@@ -53,7 +53,7 @@
       "http_directory": "http",
       "shutdown_command": "shutdown -P now",
       "vboxmanage": [
-        [ "modifyvm", "{{.Name}}", "--memory", "512" ],
+        [ "modifyvm", "{{.Name}}", "--memory", "1024" ],
         [ "modifyvm", "{{.Name}}", "--cpus", "1" ]
       ]
     },
@@ -76,7 +76,7 @@
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_file`}}<enter><wait>"
       ],
       "vmx_data": {
-        "memsize": "512",
+        "memsize": "1024",
         "numvcpus": "1",
         "vhv.enable": "TRUE"
       }
@@ -100,7 +100,7 @@
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_file`}}<enter><wait>"
       ],
       "vmx_data": {
-        "memsize": "512",
+        "memsize": "1024",
         "numvcpus": "1",
         "vhv.enable": "TRUE"
       }
@@ -122,7 +122,7 @@
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_file`}}<enter><wait>"
       ],
       "qemuargs": [
-        [ "-m", "512M"]
+        [ "-m", "1024M"]
       ]
     },
     {
@@ -142,7 +142,7 @@
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `ks_file`}}<enter><wait>"
       ],
       "qemuargs": [
-        [ "-m", "512M"]
+        [ "-m", "1024M"]
       ]
     }
   ],
