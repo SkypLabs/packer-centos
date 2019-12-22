@@ -1,6 +1,6 @@
 {
   "centos_version": "7",
   "ks_file": "centos7.cfg",
-  "iso_filename": "NetInstall-1804",
-  "iso_checksum": "937bf0a7b0932817f84f7230f15ed88911bbbd85c0c958680792b7f8d8f9c1a9"
+  "iso_filename": "NetInstall-1908",
+  "iso_checksum": "6ffa7ad44e8716e4cd6a5c3a85ba5675a935fc0448c260f43b12311356ba85ad"
 }
